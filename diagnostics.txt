@@ -1,0 +1,3 @@
+Exception: The source IQueryable doesn't implement IDbAsyncEnumerable<GymSystem.Entites.Plan>. Only sources that implement IDbAsyncEnumerable can be used for Entity Framework asynchronous operations.
+Stack: PlanController.IndexAsync -> dbContext.Plans.ToListAsync()
+Question: What type is dbContext? Is it configured for async?

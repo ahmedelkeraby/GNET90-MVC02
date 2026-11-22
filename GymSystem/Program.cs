@@ -2,6 +2,8 @@ namespace GymSystem
 {
     public class Program
     {
+        #region 1
+        #endregion
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
