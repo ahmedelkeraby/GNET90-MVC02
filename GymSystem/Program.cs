@@ -1,3 +1,9 @@
+using GymSystem.Repositories.Classes;
+using GymSystem.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
 namespace GymSystem
 {
     public class Program
@@ -9,7 +15,21 @@ namespace GymSystem
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews(Options =>
+            {
+                Options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+
+            });
+            builder.Services.AddScoped<IPlanRespository, PlanRespository>();
+            builder.Services.AddScoped<IMemberShipRepostory, MemberShipRespository>();
+            builder.Services.AddDbContext<GymContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            }
+
+            
+            );
+
 
             var app = builder.Build();
 

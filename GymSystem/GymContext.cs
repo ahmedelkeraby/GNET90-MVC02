@@ -6,14 +6,20 @@ namespace GymSystem
 {
     public class GymContext : DbContext 
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+       
+
+        public GymContext(DbContextOptions<GymContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=GymDb;Trusted_Connection=True;TrustserverCertificate=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
+
+        internal async Task<int> SaveChanges(CancellationToken ct)
+        {
+            throw new NotImplementedException();
         }
 
         public DbSet<Member> Members => Set<Member>();

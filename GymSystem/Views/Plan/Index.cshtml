@@ -1,24 +1,41 @@
-﻿@model IEnumerable<GymSystem.Entites.Plan>
+﻿
+@model IEnumerable<PlanViewModel>
+@{
+
+    ViewData["Title"] = "Plans";
+}
+
+@if (TempData["SuccessMessage"] is not null)
+{
 
 
+    <div class="toasts" role="status" aria-live="polite">
+        <div class="toast-r"><i class="bi bi-check-circle-fill"></i><span>@TempData["SuccessMessage"]</span><button type="button" aria-label="Close">&times;</button></div>
+    </div>
+}
+else if (TempData["ErrorMessage"] is not null)
+{
 
+        <div class="toasts" role="status" aria-live="polite">
+        <div class="toast-r error"><i class="bi bi-exclamation-circle-fill"></i><span>@TempData["ErrorMessage"] </span><button type="button" aria-label="Close">&times;</button></div>
+</div>
+    
 
+}
+           
+    <div class="page-head">
+        <div>
+            <h1 class="page-title">Plans</h1>
+            <p class="page-sub">What members can subscribe to</p>
+        </div>
+    </div>
 
-            <main class="content">
+    <div class="callout" style="margin-bottom:22px">
+        <i class="bi bi-shield-check"></i>
+        <div>A plan with <strong>active or upcoming memberships</strong> is locked: it can't be edited or deactivated until those memberships end. Inactive plans can't be sold or edited.</div>
+    </div>
 
-                <div class="page-head">
-                    <div>
-                        <h1 class="page-title">Plans</h1>
-                        <p class="page-sub">What members can subscribe to</p>
-                    </div>
-                </div>
-
-                <div class="callout" style="margin-bottom:22px">
-                    <i class="bi bi-shield-check"></i>
-                    <div>A plan with <strong>active or upcoming memberships</strong> is locked: it can't be edited or deactivated until those memberships end. Inactive plans can't be sold or edited.</div>
-                </div>
-
-                <!-- BACKEND: The page needs a list of plans from the database (all of them, active and inactive) -->
+    <!-- BACKEND: The page needs a list of plans from the database (all of them, active and inactive) -->
 
                 
                                 
@@ -116,5 +133,4 @@ else
     
                 
 
-            </main>
    
